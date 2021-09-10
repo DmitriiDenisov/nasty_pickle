@@ -1,9 +1,9 @@
 import pickle
 
-with open('../bombs/bomb_hi.pkl', 'rb') as read_file:
+with open('../bombs_pickles/bomb_hi.pkl', 'rb') as read_file:
     new_noise = pickle.load(read_file)
 
-with open('../bombs/bomb_virus_with_pic.pkl', 'rb') as f:
+with open('../bombs_pickles/bomb_virus_with_pic.pkl', 'rb') as f:
     payload = f.read()
     data = pickle.loads(payload)
     print(data)
