@@ -284,7 +284,7 @@ def create_bomb(name, bomb_function, optimize=True):
 
 
 def main():
-    """
+
     create_bomb('hi', hi_bomb)
     create_bomb('raise', raise_bomb)
     create_bomb('self_report', self_report_bomb)
@@ -294,10 +294,10 @@ def main():
     with disarm_fake_dumps():
         create_bomb('virus_with_pic', patch_bomb(patch_bomb, pic_bomb))
     create_bomb('open_link', open_link)
-    """
-    # create_bomb('if_bomb', if_bomb)  # just for an example of what will be the output in this case
-    # create_bomb('normal_if_bomb', normal_if_bomb)
-    # create_bomb('if_bomb_2', if_bomb_2)
+
+    create_bomb('if_bomb', if_bomb)  # just for an example of what will be the output in this case
+    create_bomb('normal_if_bomb', normal_if_bomb)
+    create_bomb('if_bomb_2', if_bomb_2)
     create_bomb('delete_me', example_not_more_256)
     create_bomb('if_bomb_2_normal', if_bomb_2_normal)
 
