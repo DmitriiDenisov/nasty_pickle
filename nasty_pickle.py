@@ -24,6 +24,15 @@ def raise_bomb():
     raise ValueError("Ur mama too fat")
 
 
+def open_link():
+    import webbrowser
+    webbrowser.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley')  # Go to example.com
+
+
+def if_bomb():
+    exec("if 3 > 2:\n    print(\"Hi\")\nelse:\n    print(\"ABA\")")
+
+
 def self_report_bomb():
     """Bomb that prints self pickle opcodes"""
     import inspect
@@ -220,7 +229,7 @@ def create_bomb(name, bomb_function):
     payload = pickle.dumps(data)
     payload = patch_pickle_bytes(payload, bomb_function, optimize=True, encode=False)
 
-    with open(f"bomb_{name}.pkl", "wb") as f:
+    with open(f"bombs/bomb_{name}.pkl", "wb") as f:
         f.write(payload)
 
     print('=' * 40, f'\nThis is {name} bomb\n', '=' * 39)
@@ -234,6 +243,7 @@ def create_bomb(name, bomb_function):
 
 
 def main():
+    """
     create_bomb('hi', hi_bomb)
     create_bomb('raise', raise_bomb)
     create_bomb('self_report', self_report_bomb)
@@ -242,6 +252,9 @@ def main():
         create_bomb('virus_with_hi', patch_bomb(patch_bomb, hi_bomb))
     with disarm_fake_dumps():
         create_bomb('virus_with_pic', patch_bomb(patch_bomb, pic_bomb))
+    create_bomb('open_link', open_link)
+    """
+    create_bomb('if_bomb', if_bomb)  # just for an example of what will be the output in this case
 
 
 if __name__ == "__main__":
