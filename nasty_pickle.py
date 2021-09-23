@@ -10,11 +10,11 @@ import inspect
 
 from utils.main_functions import patch_pickle_bytes, make_source_from_function
 
-
-
 """
-For some reason Virus functions should be also here in the same file as the nasty_pickle.py
+For virus part everything should be in this file, no even imports because it will be executed each time
+user creates new pickle file
 """
+
 
 @contextlib.contextmanager
 def disarm_fake_dumps():
