@@ -33,7 +33,7 @@ def make_source_from_function(f):
         lines = inspect.getsourcelines(f)[0]
 
     lines_1 = [l[4:] for l in lines]
-    ans = "".join(lines_1[1:]).replace('"', "\"")
+    ans = "".join(lines_1[1:]) #.replace('"', "\"")
 
     try:
         hexlen = bytes([len(ans)])
