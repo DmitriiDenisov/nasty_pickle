@@ -1,17 +1,16 @@
 # nasty_pickle
 Some nasty code to inject pickles with (almost) arbitrary code
 
-### Usage
+### Example of creating bombs:
 
-```
-from nasty_pickle import patch_pickle_bytes
+`python3 nasty_pickle.py`
 
-def my_bomb():
-    print('kek')
-    
-pickle_payload = ...
-payload_that_will_print_kek_on_unpickling = patch_pickle_bytes(pickle_payload, my_bomb)
-```
+### Example of reading bombs:
 
-`my_bomb` can contain any code that is convertible to oneliner, so no ifs, loops, exception handling and so on. 
-And don't forget to include necessary imports
+`python3 clueless_pickle.py`
+
+### Sources: 
+1. https://github.com/mike0sv/nasty_pickle
+2. https://intoli.com/blog/dangerous-pickles/
+3. https://checkoway.net/musings/pickle/
+4. (RUS) https://www.youtube.com/watch?v=xm-A-h9QkXg&t=610s&ab_channel=ODSAIGlobal
