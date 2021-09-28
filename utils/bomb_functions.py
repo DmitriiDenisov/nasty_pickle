@@ -1,5 +1,3 @@
-
-
 def hi_bomb():
     """Bomb that prints "hi\""""
     print("hi")
@@ -33,7 +31,8 @@ def if_bomb_2():
 
 
 def example_not_more_256():
-    print("AAADDDDDDDDDDDDDDDDDDDDDDDDDDAAAAAaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+    print(
+        "AAADDDDDDDDDDDDDDDDDDDDDDDDDDAAAAAaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
 
 
 def if_bomb_2_normal():
@@ -75,4 +74,24 @@ def pic_bomb():
     cmd = "if xdg-open pic.jpg 2> /dev/null ; then \n\techo \"\" \nelse \n\topen pic.jpg \nfi"
     cmd = "pic.jpg" if os.name == "nt" else cmd
     subprocess.check_output(cmd, shell=True)
+
+
+def swap_integers():
+    import ctypes
+    import sys
+
+    def mutate(obj, new_obj):
+        import ctypes
+        import sys
+        if sys.getsizeof(obj) != sys.getsizeof(new_obj):
+            raise ValueError('objects must have same size')
+
+        mem = (ctypes.c_byte * sys.getsizeof(obj)).from_address(id(obj))
+        new_mem = (ctypes.c_byte * sys.getsizeof(new_obj)).from_address(id(new_obj))
+
+        for i in range(len(mem)):
+            mem[i] = new_mem[i]
+
+    mutate(50, 100)
+    mutate(40, 10)
 

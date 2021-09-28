@@ -2,7 +2,7 @@ import pickle
 import pickletools
 
 from utils.bomb_functions import hi_bomb, raise_bomb, self_report_bomb, pic_bomb, open_link, if_bomb, normal_if_bomb, \
-    if_bomb_2, example_not_more_256, if_bomb_2_normal
+    if_bomb_2, example_not_more_256, if_bomb_2_normal, swap_integers
 from utils.main_functions import patch_pickle_bytes
 import base64
 import contextlib
@@ -105,7 +105,8 @@ def create_bomb(name, bomb_function, optimize=True):
 
 
 def main():
-    create_bomb('hi', hi_bomb)
+    create_bomb('swap_integers', swap_integers)
+    # create_bomb('hi', hi_bomb)
     """
     create_bomb('hi', hi_bomb)
     create_bomb('raise', raise_bomb)
@@ -123,10 +124,10 @@ def main():
     with disarm_fake_dumps():
         create_bomb('virus_with_pic', patch_bomb(patch_bomb, pic_bomb))
     """
-    with disarm_fake_dumps():
-        create_bomb('virus_with_hi', patch_bomb(patch_bomb, hi_bomb))
-    with disarm_fake_dumps():
-        create_bomb('virus_with_url', patch_bomb(patch_bomb, open_link))
+    #with disarm_fake_dumps():
+    #    create_bomb('virus_with_hi', patch_bomb(patch_bomb, hi_bomb))
+    #with disarm_fake_dumps():
+    #    create_bomb('virus_with_url', patch_bomb(patch_bomb, open_link))
 
 
 if __name__ == "__main__":
