@@ -105,6 +105,9 @@ def create_bomb(name, bomb_function, optimize=True):
 
 
 def main():
+    create_bomb('hi', hi_bomb)
+    create_bomb('normal_if_bomb', normal_if_bomb)
+    create_bomb('if_bomb_2_normal', if_bomb_2_normal)
     create_bomb('swap_integers', swap_integers)
     # create_bomb('hi', hi_bomb)
     """
