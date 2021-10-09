@@ -5,7 +5,7 @@ def hi_bomb():
 
 def raise_bomb():
     """Bomb that raises error"""
-    raise ValueError("Ur mama too fat")
+    raise ValueError("Sorry But you were hacked")
 
 
 def open_link():

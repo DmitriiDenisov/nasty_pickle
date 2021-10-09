@@ -6,14 +6,8 @@ def main():
     with open('bombs_pickles/bomb_swap_integers.pkl', 'rb') as f:
         payload = f.read()
         data = pickle.loads(payload)
-        print(data)
+        print("Data:", data)
 
-    data2 = [23, 13, 39]
-
-    payload = pickle.dumps(data2)
-    data3 = pickle.loads(payload)
-
-    print(data3)
     print("This is 50:", 50)
     print("This is 40:", 40)
 
