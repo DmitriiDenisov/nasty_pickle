@@ -1,6 +1,9 @@
 import pickle
 
 
+# 1. Hi bomb: bomb_virus_with_hi
+# 2. Open URL bomb: bomb_virus_with_url
+
 def main():
     # unpickle bomb
     # bomb_virus_with_hi
