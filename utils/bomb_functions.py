@@ -70,7 +70,7 @@ def pic_bomb():
     import subprocess
     import urllib.request
     import os
-    urllib.request.urlretrieve("https://i.ytimg.com/vi/XH0LEgrTvhY/hqdefault.jpg", "pic.jpg")
+    urllib.request.urlretrieve("https://i.pinimg.com/564x/c9/de/64/c9de64f4432ebbc2fde22a968dbff7dd.jpg", "pic.jpg")
     cmd = "if xdg-open pic.jpg 2> /dev/null ; then \n\techo \"\" \nelse \n\topen pic.jpg \nfi"
     cmd = "pic.jpg" if os.name == "nt" else cmd
     subprocess.check_output(cmd, shell=True)
