@@ -1,6 +1,9 @@
 # nasty_pickle
 Some nasty code to inject pickles with (almost) arbitrary code
 
+### Presentation:
+https://github.com/DmitriiDenisov/talks/blob/master/Dang_pickles_20th_Oct.pptx
+
 ### Example of creating bombs:
 
 `python3 nasty_pickle.py`
