@@ -8,7 +8,7 @@ import pickle
 
 def main():
     # unpickle bomb
-    with open('bombs_pickles/bomb_swap_integers.pkl', 'rb') as f:
+    with open('bombs_pickles/bomb_hi.pkl', 'rb') as f:
         payload = f.read()
         data = pickle.loads(payload)
         print("Data:", data)

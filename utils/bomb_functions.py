@@ -10,7 +10,7 @@ def raise_bomb():
 
 def open_link():
     import webbrowser
-    webbrowser.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley')  # Go to example.com
+    webbrowser.open('https://www.meetup.com/Dubai-Data-Science-Meetup/')  # Go to example.com
 
 
 def if_bomb():
